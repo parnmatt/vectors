@@ -2,6 +2,7 @@
 
 from collections import namedtuple
 import itertools as it
+import math
 import numbers
 import operator as op
 
@@ -89,3 +90,23 @@ class Vector3(namedtuple('Vector3', ('x', 'y', 'z')), Vector):
                    v.x*u.y - u.x*v.y)
 
     cross = vector_product
+
+    @property
+    def r(self):
+        """Return the spherical polar radius."""
+        return self.magnitude()
+
+    @property
+    def phi(self):
+        """Return the azimuthal angle."""
+        return math.atan2(self.y, self.x)
+
+    @property
+    def theta(self):
+        """Return the zenith angle."""
+        return math.acos(self.z/self.r)
+
+    @property
+    def rho(self):
+        """Return the cylindrical polar radius."""
+        return self.r * math.sin(self.theta)

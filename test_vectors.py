@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
+import math
 import unittest
-import sys
 
 import vectors
 
@@ -81,6 +81,7 @@ class TestVector3(unittest.TestCase):
         super().setUp()
         self.v = vectors.Vector3(1, 2, 3)
         self.u = vectors.Vector3(7, 4, 2)
+        self.w = vectors.Vector3(2, 2*3**0.5, 3)
 
     def tearDown(self):
         super().tearDown()
@@ -106,6 +107,17 @@ class TestVector3(unittest.TestCase):
         self.assertEqual(vectors.Vector3.vector_product(self.v, self.u),
                          -vectors.Vector3.vector_product(self.u, self.v))
 
+    def test_spherical_polar_radius(self):
+        self.assertEqual(self.w.r, 5)
+
+    def test_azimuthal_angle(self):
+        self.assertEqual(round(self.w.phi * 180/math.pi, 7), 60)
+
+    def test_zenith_angle(self):
+        self.assertEqual(math.cos(self.w.theta), 3/5)
+
+    def test_cylindrical_polar_radius(self):
+        self.assertEqual(self.w.rho, 4)
 
 if __name__ == '__main__':
     unittest.main()
