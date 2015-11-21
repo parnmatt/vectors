@@ -9,34 +9,34 @@ class TestVector(unittest.TestCase):
 
     def setUp(self):
         super().setUp()
-        self.v = vectors.Vector(1, 2, 3)
-        self.u = vectors.Vector(7, 4, 2)
+        self.v = vectors.Vector(4, -6, 7, 2.4, 10)
+        self.u = vectors.Vector(2, 3, -0.5, 4, 3)
 
     def tearDown(self):
         super().tearDown()
 
     def test_addition(self):
         self.assertEqual(self.v + self.u,
-                         vectors.Vector(8, 6, 5))
+                         vectors.Vector(6, -3, 6.5, 6.4, 13))
 
     def test_subtraction(self):
         self.assertEqual(self.v - self.u,
-                         vectors.Vector(-6, -2, 1))
+                         vectors.Vector(2, -9, 7.5, -1.6, 7))
 
     def test_scalar_product(self):
-        self.assertEqual(vectors.Vector.scalar_product(self.v, self.u), 21)
+        self.assertEqual(vectors.Vector.scalar_product(self.v, self.u), 26.1)
 
     def test_dot_product(self):
-        self.assertEqual(vectors.Vector.dot(self.v, self.u), 21)
+        self.assertEqual(vectors.Vector.dot(self.v, self.u), 26.1)
 
     def test_vector_mul_vector(self):
-        self.assertEqual(self.v * self.u, 21)
+        self.assertEqual(self.v * self.u, 26.1)
 
     def test_vector_mul_scalar(self):
-        self.assertEqual(self.v * 5, vectors.Vector(5, 10, 15))
+        self.assertEqual(self.v * 5, vectors.Vector(20, -30, 35, 12, 50))
 
     def test_scalar_mul_vector(self):
-        self.assertEqual(3 * self.u, vectors.Vector(21, 12, 6))
+        self.assertEqual(3 * self.u, vectors.Vector(6, 9, -1.5, 12, 9))
 
     def test_ensure_scalar_commutes_mul(self):
         self.assertEqual(self.u * 10.3, 10.3 * self.u)
@@ -52,16 +52,16 @@ class TestVector(unittest.TestCase):
         self.assertEqual(self.v**(-3), 1 / self.v**3)
 
     def test_magnitude(self):
-        self.assertEqual(self.v.magnitude(), math.sqrt(14))
+        self.assertEqual(self.v.magnitude(), math.sqrt(206.76))
 
     def test_length(self):
-        self.assertEqual(self.u.length(), math.sqrt(69))
+        self.assertEqual(self.u.length(), math.sqrt(38.25))
 
     def test_vector_div_integer_scalar(self):
-        self.assertEqual(self.v / 2, vectors.Vector(0.5, 1.0, 1.5))
+        self.assertEqual(self.v / 2, vectors.Vector(2.0, -3.0, 3.5, 1.2, 5.0))
 
     def test_vector_div_decimal_scalar(self):
-        self.assertEqual(self.u / 2.5, vectors.Vector(2.8, 1.6, 0.8))
+        self.assertEqual(self.u / 2.5, vectors.Vector(0.8, 1.2, -0.2, 1.6, 1.2))
 
     def test_vector_div_vector(self):
         with self.assertRaises(TypeError):
@@ -74,7 +74,7 @@ class TestVector(unittest.TestCase):
         self.assertEqual(+self.v, self.v)
 
     def test_neg_vector(self):
-        self.assertEqual(-self.u, vectors.Vector(-7, -4, -2))
+        self.assertEqual(-self.u, vectors.Vector(-2, -3, 0.5, -4, -3))
 
 class TestVector3(unittest.TestCase):
 
