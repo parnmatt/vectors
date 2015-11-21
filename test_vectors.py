@@ -45,16 +45,17 @@ class TestVector(unittest.TestCase):
         self.assertEqual(self.v**2, self.v * self.v)
 
     def test_fractional_powers(self):
-        self.assertEqual(self.u**5.2, (self.u * self.u)**2.6)
+        self.assertEqual(round(self.u**5.2, 7),
+                         round(math.sqrt(self.u * self.u)**5.2, 7))
 
     def test_negative_power(self):
         self.assertEqual(self.v**(-3), 1 / self.v**3)
 
     def test_magnitude(self):
-        self.assertEqual(self.v.magnitude(), 14**0.5)
+        self.assertEqual(self.v.magnitude(), math.sqrt(14))
 
     def test_length(self):
-        self.assertEqual(self.u.length(), 69**0.5)
+        self.assertEqual(self.u.length(), math.sqrt(69))
 
     def test_vector_div_integer_scalar(self):
         self.assertEqual(self.v / 2, vectors.Vector(0.5, 1.0, 1.5))
@@ -81,7 +82,7 @@ class TestVector3(unittest.TestCase):
         super().setUp()
         self.v = vectors.Vector3(1, 2, 3)
         self.u = vectors.Vector3(7, 4, 2)
-        self.w = vectors.Vector3(2, 2*3**0.5, 3)
+        self.w = vectors.Vector3(2, 2*math.sqrt(3), 3)
 
     def tearDown(self):
         super().tearDown()
