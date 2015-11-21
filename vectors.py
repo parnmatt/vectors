@@ -5,13 +5,27 @@ import itertools as it
 import numbers
 import operator as op
 
-class Vector(namedtuple('Vector', ('x', 'y', 'z'))):
+class Vector3(namedtuple('Vector3', ('x', 'y', 'z'))):
     """A 3-dimensional mathematical vector."""
+    pass
+
+class Vector(tuple):
+    """An n-dimensional mathematical vector."""
+
+    def __new__(self, *components):
+        """Create a tuple of the components."""
+        return tuple.__new__(self, components)
+
+    def __repr__(self):
+        """Return string that can be reevaluated."""
+        return self.__class__.__name__ + super().__repr__()
+
+    __str__ = __repr__
 
     @classmethod
     def _map(cls, func, *iterables):
         """Map function over the components."""
-        return cls._make(map(func, *iterables))
+        return cls(*map(func, *iterables))
 
     def __add__(self, v):
         """Add the components of the vectors."""
