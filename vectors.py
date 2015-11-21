@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from collections import namedtuple
+import functools as ft
 import itertools as it
 import math
 import numbers
@@ -23,14 +24,6 @@ class Vector(tuple):
     def _map(cls, func, *iterables):
         """Map function over the components."""
         return cls(*map(func, *iterables))
-
-    def __add__(self, v):
-        """Add the components of the vectors."""
-        return self._map(op.add, self, v)
-
-    def __sub__(self, v):
-        """Subtract the components of the vectors."""
-        return self._map(op.sub, self, v)
 
     @staticmethod
     def scalar_product(v, u):
@@ -78,6 +71,20 @@ class Vector(tuple):
     def __neg__(self):
         """Negate vector."""
         return -1 * self
+
+    def __add__(self, v):
+        """Add the components of the vectors."""
+        return self._map(op.add, self, v)
+
+    __radd__ = __add__
+
+    def __sub__(self, v):
+        """Subtract the components of the vectors."""
+        return self._map(op.sub, self, v)
+
+    def __rsub__(self, v):
+        return -self + v
+
 
 class Vector3(namedtuple('Vector3', ('x', 'y', 'z')), Vector):
     """A 3-dimensional mathematical vector."""
