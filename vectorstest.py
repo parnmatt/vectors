@@ -17,6 +17,9 @@ class TestVectors(unittest.TestCase):
         self.assertEqual(self.v.y, 2)
         self.assertEqual(self.v.z, 3)
 
+    def test_equality(self):
+        v_copy = vectors.Vector(self.v.x, self.v.y, self.v.z)
+        self.assertEqual(self.v, v_copy)
 
 if __name__ == '__main__':
     unittest.main()

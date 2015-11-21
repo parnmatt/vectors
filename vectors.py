@@ -8,3 +8,7 @@ class Vector():
         self.x = x
         self.y = y
         self.z = z
+
+    def __eq__(self, v):
+        """Vectors are equal if they have the same components."""
+        return self.x == v.x and self.y == v.y and self.z == v.z
