@@ -18,3 +18,9 @@ class Vector():
         return Vector(self.x + v.x,
                       self.y + v.y,
                       self.z + v.z)
+
+    def __sub__(self, v):
+        """Subtract the components of the vectors."""
+        return Vector(self.x - v.x,
+                      self.y - v.y,
+                      self.z - v.z)

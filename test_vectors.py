@@ -26,6 +26,10 @@ class TestVectors(unittest.TestCase):
         self.assertEqual(self.v + self.u,
                          vectors.Vector(8, 6, 5))
 
+    def test_subtraction(self):
+        self.assertEqual(self.v - self.u,
+                         vectors.Vector(-6, -2, 1))
+
 
 if __name__ == '__main__':
     unittest.main()
