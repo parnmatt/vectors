@@ -3,7 +3,7 @@
 import unittest
 import vectors
 
-class TestVectors(unittest.TestCase):
+class TestVector(unittest.TestCase):
 
     def setUp(self):
         super().setUp()
@@ -12,16 +12,6 @@ class TestVectors(unittest.TestCase):
 
     def tearDown(self):
         super().tearDown()
-
-    @unittest.expectedFailure
-    def test_init(self):
-        self.assertEqual(self.v.x, 1)
-        self.assertEqual(self.v.y, 2)
-        self.assertEqual(self.v.z, 3)
-
-    @unittest.expectedFailure
-    def test_equality(self):
-        self.assertEqual(self.v, vectors.Vector._make(self.v))
 
     def test_addition(self):
         self.assertEqual(self.v + self.u,
@@ -82,6 +72,25 @@ class TestVectors(unittest.TestCase):
 
     def test_neg_vector(self):
         self.assertEqual(-self.u, vectors.Vector(-7, -4, -2))
+
+class TestVector3(unittest.TestCase):
+
+    def setUp(self):
+        super().setUp()
+        self.v = vectors.Vector3(1, 2, 3)
+        self.u = vectors.Vector3(7, 4, 2)
+
+    def tearDown(self):
+        super().tearDown()
+
+    def test_get_x(self):
+        self.assertEqual(self.u.x, 7)
+
+    def test_get_y(self):
+        self.assertEqual(self.u.y, 4)
+
+    def test_get_z(self):
+        self.assertEqual(self.u.z, 2)
 
 if __name__ == '__main__':
     unittest.main()

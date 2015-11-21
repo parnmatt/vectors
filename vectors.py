@@ -5,10 +5,6 @@ import itertools as it
 import numbers
 import operator as op
 
-class Vector3(namedtuple('Vector3', ('x', 'y', 'z'))):
-    """A 3-dimensional mathematical vector."""
-    pass
-
 class Vector(tuple):
     """An n-dimensional mathematical vector."""
 
@@ -82,3 +78,6 @@ class Vector(tuple):
         """Negate vector."""
         return -1 * self
 
+class Vector3(namedtuple('Vector3', ('x', 'y', 'z')), Vector):
+    """A 3-dimensional mathematical vector."""
+    pass
