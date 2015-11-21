@@ -29,6 +29,20 @@ class TestVectors(unittest.TestCase):
         self.assertEqual(self.v - self.u,
                          vectors.Vector(-6, -2, 1))
 
+    def test_scalar_product(self):
+        self.assertEqual(vectors.Vector.scalar_product(self.v, self.u), 21)
+
+    def test_dot_product(self):
+        self.assertEqual(vectors.Vector.dot(self.v, self.u), 21)
+
+    def test_vector_mul_vector(self):
+        self.assertEqual(self.v * self.u, 21)
+
+    def test_vector_mul_scalar(self):
+        self.assertEqual(self.v * 5, vectors.Vector(5, 10, 15))
+
+    def test_scalar_mul_vector(self):
+        self.assertEqual(3 * self.u, vectors.Vector(21, 12, 6))
 
 if __name__ == '__main__':
     unittest.main()
