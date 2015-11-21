@@ -80,4 +80,12 @@ class Vector(tuple):
 
 class Vector3(namedtuple('Vector3', ('x', 'y', 'z')), Vector):
     """A 3-dimensional mathematical vector."""
-    pass
+
+    @classmethod
+    def vector_product(cls, v, u):
+        """Return the vector product of the given vectors."""
+        return cls(v.y*u.z - u.y*v.z,
+                   v.z*u.x - u.z*v.x,
+                   v.x*u.y - u.x*v.y)
+
+    cross = vector_product

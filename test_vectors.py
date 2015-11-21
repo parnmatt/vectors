@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import unittest
+import sys
+
 import vectors
 
 class TestVector(unittest.TestCase):
@@ -91,6 +93,19 @@ class TestVector3(unittest.TestCase):
 
     def test_get_z(self):
         self.assertEqual(self.u.z, 2)
+
+    def test_vector_product(self):
+        self.assertEqual(vectors.Vector3.vector_product(self.v, self.u),
+                         vectors.Vector3(-8, 19, -10))
+
+    def test_cross(self):
+        self.assertEqual(vectors.Vector3.cross(self.v, self.u),
+                         vectors.Vector3(-8, 19, -10))
+
+    def test_vector_product_anticommutes(self):
+        self.assertEqual(vectors.Vector3.vector_product(self.v, self.u),
+                         -vectors.Vector3.vector_product(self.u, self.v))
+
 
 if __name__ == '__main__':
     unittest.main()
