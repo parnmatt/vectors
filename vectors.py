@@ -48,3 +48,14 @@ class Vector(namedtuple('Vector', ('x', 'y', 'z'))):
         return self**1
 
     length = magnitude
+
+    def __truediv__(self, scalar):
+        """Return vector scaled by the reciprocal of the scalar."""
+        if isinstance(scalar, numbers.Number):
+            return self._map(op.truediv, self, it.repeat(scalar))
+        else:
+            raise TypeError
+
+    def unit(self):
+        """Return corresponding unit vector."""
+        return self / self.magnitude()

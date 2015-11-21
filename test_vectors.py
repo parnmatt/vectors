@@ -56,5 +56,14 @@ class TestVectors(unittest.TestCase):
     def test_length(self):
         self.assertEqual(self.u.length(), 69**0.5)
 
+    def test_vector_div_integer_scalar(self):
+        self.assertEqual(self.v / 2, vectors.Vector(0.5, 1.0, 1.5))
+
+    def test_vector_div_decimal_scalar(self):
+        self.assertEqual(self.u / 2.5, vectors.Vector(2.8, 1.6, 0.8))
+
+    def test_unit_vector(self):
+        self.assertEqual(self.v.unit(), self.v / self.v.magnitude())
+
 if __name__ == '__main__':
     unittest.main()
