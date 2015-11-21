@@ -8,6 +8,7 @@ class TestVectors(unittest.TestCase):
     def setUp(self):
         super().setUp()
         self.v = vectors.Vector(1, 2, 3)
+        self.u = vectors.Vector(7, 4, 2)
 
     def tearDown(self):
         super().tearDown()
@@ -20,6 +21,11 @@ class TestVectors(unittest.TestCase):
     def test_equality(self):
         v_copy = vectors.Vector(self.v.x, self.v.y, self.v.z)
         self.assertEqual(self.v, v_copy)
+
+    def test_addition(self):
+        self.assertEqual(self.v + self.u,
+                         vectors.Vector(8, 6, 5))
+
 
 if __name__ == '__main__':
     unittest.main()

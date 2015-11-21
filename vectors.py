@@ -12,3 +12,9 @@ class Vector():
     def __eq__(self, v):
         """Vectors are equal if they have the same components."""
         return self.x == v.x and self.y == v.y and self.z == v.z
+
+    def __add__(self, v):
+        """Add the components of the vectors."""
+        return Vector(self.x + v.x,
+                      self.y + v.y,
+                      self.z + v.z)
