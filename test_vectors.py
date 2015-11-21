@@ -65,5 +65,11 @@ class TestVectors(unittest.TestCase):
     def test_unit_vector(self):
         self.assertEqual(self.v.unit(), self.v / self.v.magnitude())
 
+    def test_pos_vector(self):
+        self.assertEqual(+self.v, self.v)
+
+    def test_neg_vector(self):
+        self.assertEqual(-self.u, vectors.Vector(-7, -4, -2))
+
 if __name__ == '__main__':
     unittest.main()

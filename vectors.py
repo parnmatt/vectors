@@ -59,3 +59,12 @@ class Vector(namedtuple('Vector', ('x', 'y', 'z'))):
     def unit(self):
         """Return corresponding unit vector."""
         return self / self.magnitude()
+
+    def __pos__(self):
+        """Return vector unchanged."""
+        return self
+
+    def __neg__(self):
+        """Negate vector."""
+        return -1 * self
+
