@@ -44,11 +44,17 @@ class TestVectors(unittest.TestCase):
     def test_scalar_mul_vector(self):
         self.assertEqual(3 * self.u, vectors.Vector(21, 12, 6))
 
+    def test_ensure_scalar_commutes_mul(self):
+        self.assertEqual(self.u * 10.3, 10.3 * self.u)
+
     def test_squaring(self):
         self.assertEqual(self.v**2, self.v * self.v)
 
     def test_fractional_powers(self):
         self.assertEqual(self.u**5.2, (self.u * self.u)**2.6)
+
+    def test_negative_power(self):
+        self.assertEqual(self.v**(-3), 1 / self.v**3)
 
     def test_magnitude(self):
         self.assertEqual(self.v.magnitude(), 14**0.5)
@@ -61,6 +67,10 @@ class TestVectors(unittest.TestCase):
 
     def test_vector_div_decimal_scalar(self):
         self.assertEqual(self.u / 2.5, vectors.Vector(2.8, 1.6, 0.8))
+
+    def test_vector_div_vector(self):
+        with self.assertRaises(TypeError):
+            self.v / self.u
 
     def test_unit_vector(self):
         self.assertEqual(self.v.unit(), self.v / self.v.magnitude())
