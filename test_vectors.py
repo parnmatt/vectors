@@ -16,6 +16,11 @@ class TestVector(unittest.TestCase):
         super().tearDown()
 
     # products
+    def test_scalar_product_vector_length_error(self):
+        with self.assertRaises(vectors.VectorLengthError):
+            vectors.Vector.scalar_product(self.v,
+                                          vectors.Vector(1, 2, 3))
+
     def test_scalar_product_vector_vector(self):
         self.assertEqual(vectors.Vector.scalar_product(self.v, self.u), 26.1)
 
@@ -114,6 +119,10 @@ class TestVector(unittest.TestCase):
         self.assertEqual(-self.u, vectors.Vector(-2, -3, 0.5, -4, -3))
 
     # addition
+    def test_add_vector_length(self):
+        with self.assertRaises(vectors.VectorLengthError):
+            self.v + vectors.Vector(1, 2, 3)
+
     def test_vector_add_vector(self):
         self.assertEqual(self.v + self.u,
                          vectors.Vector(6, -3, 6.5, 6.4, 13))
@@ -135,6 +144,10 @@ class TestVector(unittest.TestCase):
                          vectors.Vector(10, 0, 0, 10, 10))
 
     # subtraction
+    def test_sub_vector_length(self):
+        with self.assertRaises(vectors.VectorLengthError):
+            self.v - vectors.Vector(1, 2, 3)
+
     def test_vector_sub_vector(self):
         self.assertEqual(self.v - self.u,
                          vectors.Vector(2, -9, 7.5, -1.6, 7))
@@ -177,6 +190,11 @@ class TestVector3(unittest.TestCase):
         self.assertEqual(self.u.z, 2)
 
     # products
+    def test_scalar_product_vector3_length(self):
+        with self.assertRaises(vectors.VectorLengthError):
+            vectors.Vector3.scalar_product(
+                    self.v, vectors.Vector(5, 4, 3, 2, 1))
+
     def test_scalar_product_vector3_vector(self):
         self.assertEqual(vectors.Vector3.scalar_product(
             self.v, vectors.Vector(3, 2, 1)), 10)

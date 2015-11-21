@@ -2,10 +2,12 @@
 
 from collections import namedtuple
 import functools as ft
-import itertools as it
 import math
 import numbers
 import operator as op
+
+class VectorLengthError(ArithmeticError):
+    pass
 
 class Vector(tuple):
     """An n-dimensional mathematical vector."""
@@ -20,15 +22,23 @@ class Vector(tuple):
 
     __str__ = __repr__
 
+    @staticmethod
+    def _same_length(*iterables):
+        """Return True if all iterables are the same length."""
+        return ft.reduce(op.eq, map(len, iterables))
+
     @classmethod
     def _map(cls, func, *iterables):
         """Map function over the components."""
-        return cls(*map(func, *iterables))
+        if cls._same_length(*iterables):
+            return cls(*map(func, *iterables))
+        else:
+            raise VectorLengthError('Given vectors are not the same length')
 
-    @staticmethod
-    def scalar_product(v, u):
+    @classmethod
+    def scalar_product(cls, v, u):
         """Scalar (dot) product of the vectors."""
-        return sum(map(op.mul, v, u))
+        return sum(cls._map(op.mul, v, u))
 
     dot = scalar_product
 
@@ -37,7 +47,8 @@ class Vector(tuple):
                   scalar product    if v is a vector
         """
         if isinstance(v, numbers.Number):
-            return self._map(op.mul, self, it.repeat(v))
+            v = [v] * len(self)
+            return self._map(op.mul, self, v)
         else:
             return self.scalar_product(self, v)
 
@@ -56,7 +67,8 @@ class Vector(tuple):
     def __truediv__(self, scalar):
         """Return vector scaled by the reciprocal of the scalar."""
         if isinstance(scalar, numbers.Number):
-            return self._map(op.truediv, self, it.repeat(scalar))
+            v = [scalar] * len(self)
+            return self._map(op.truediv, self, v)
         else:
             raise TypeError
 
