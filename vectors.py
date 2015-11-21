@@ -39,3 +39,12 @@ class Vector(namedtuple('Vector', ('x', 'y', 'z'))):
 
     __rmul__ = __mul__
 
+    def __pow__(self, power):
+        """Return vector magnitude to given power."""
+        return (self * self)**(power/2)
+
+    def magnitude(self):
+        """Returns the magnitude of the vector."""
+        return self**1
+
+    length = magnitude

@@ -44,5 +44,17 @@ class TestVectors(unittest.TestCase):
     def test_scalar_mul_vector(self):
         self.assertEqual(3 * self.u, vectors.Vector(21, 12, 6))
 
+    def test_squaring(self):
+        self.assertEqual(self.v**2, self.v * self.v)
+
+    def test_fractional_powers(self):
+        self.assertEqual(self.u**5.2, (self.u * self.u)**2.6)
+
+    def test_magnitude(self):
+        self.assertEqual(self.v.magnitude(), 14**0.5)
+
+    def test_length(self):
+        self.assertEqual(self.u.length(), 69**0.5)
+
 if __name__ == '__main__':
     unittest.main()
