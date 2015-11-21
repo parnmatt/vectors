@@ -19,8 +19,7 @@ class TestVectors(unittest.TestCase):
         self.assertEqual(self.v.z, 3)
 
     def test_equality(self):
-        v_copy = vectors.Vector(self.v.x, self.v.y, self.v.z)
-        self.assertEqual(self.v, v_copy)
+        self.assertEqual(self.v, vectors.Vector._make(self.v))
 
     def test_addition(self):
         self.assertEqual(self.v + self.u,
