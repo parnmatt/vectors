@@ -168,6 +168,9 @@ class TestVector(unittest.TestCase):
         self.assertEqual([2, -3, 0.5, 6, 7] - self.u,
                          vectors.Vector(0, -6, 1, 2, 4))
 
+    def test_dimension(self):
+        self.assertEqual(self.v.dimension(), 5)
+
 class TestVector3(unittest.TestCase):
 
     def setUp(self):
@@ -234,6 +237,10 @@ class TestVector3(unittest.TestCase):
 
     def test_cylindrical_polar_radius(self):
         self.assertEqual(self.w.rho, 4)
+
+    def test_dimension(self):
+        self.assertEqual(self.v.dimension(), 3)
+
 
 if __name__ == '__main__':
     unittest.main()

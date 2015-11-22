@@ -97,16 +97,20 @@ class Vector(tuple):
     def __rsub__(self, v):
         return -self + v
 
+    def dimension(self):
+        """Returns the dimension on the vector."""
+        return len(self)
 
-class Vector3(namedtuple('Vector3', ('x', 'y', 'z')), Vector):
+
+class Vector3(namedtuple('_Vector3', ('x', 'y', 'z')), Vector):
     """A 3-dimensional mathematical vector."""
 
     @classmethod
     def vector_product(cls, v, u):
         """Return the vector product of the given vectors."""
-        return cls(v.y*u.z - u.y*v.z,
-                   v.z*u.x - u.z*v.x,
-                   v.x*u.y - u.x*v.y)
+        return cls(x=v.y*u.z - u.y*v.z,
+                   y=v.z*u.x - u.z*v.x,
+                   z=v.x*u.y - u.x*v.y)
 
     cross = vector_product
 
