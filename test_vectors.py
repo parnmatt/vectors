@@ -260,5 +260,8 @@ class TestLorentzVector(unittest.TestCase):
         self.assertEqual(vectors.LorentzVector.scalar_product(
             self.v, self.u), -12)
 
+    def test_spherical_polar_radius(self):
+        self.assertEqual(self.u.r, math.sqrt(14))
+
 if __name__ == '__main__':
     unittest.main()

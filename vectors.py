@@ -149,3 +149,8 @@ class LorentzVector(namedtuple('_LorentzVector',
     def scalar_product(cls, v, u):
         """Returns the Lorentz vector scalar_product."""
         return super().scalar_product(v, cls._covariant(u))
+
+    @property
+    def r(self):
+        """Return the spherical polar radius."""
+        return Vector3(x=self.x, y=self.y, z=self.z).r
