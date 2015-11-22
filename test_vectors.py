@@ -242,13 +242,23 @@ class TestVector3(unittest.TestCase):
         self.assertEqual(self.v.dimension(), 3)
 
 
-class TextLorentzVector(unittest.TestCase):
+class TestLorentzVector(unittest.TestCase):
 
     def setUp(self):
         super().setUp()
+        self.v = vectors.LorentzVector(1, 2, 3, 4)
+        self.u = vectors.LorentzVector(4, 3, 2, 1)
 
     def tearDown(self):
         super().tearDown()
+
+    def test_covariant(self):
+        self.assertEqual(vectors.LorentzVector._covariant(self.v),
+                         vectors.LorentzVector(1, -2, -3, -4))
+
+    def test_scalar_product(self):
+        self.assertEqual(vectors.LorentzVector.scalar_product(
+            self.v, self.u), -12)
 
 if __name__ == '__main__':
     unittest.main()

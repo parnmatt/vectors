@@ -137,4 +137,15 @@ class Vector3(namedtuple('_Vector3', ('x', 'y', 'z')), Vector):
 class LorentzVector(namedtuple('_LorentzVector',
                                ('t',) + Vector3._fields), Vector3):
     """A 1+3 Lorentz Vector, of the form (t, x, y, z)."""
-    pass
+
+    @classmethod
+    def _covariant(cls, v):
+        """Return covariant Lorentz vector using the Minkowski metric
+           with signiture (+---).
+        """
+        return cls(t=v.t, x=-v.x, y=-v.y, z=-v.z)
+
+    @classmethod
+    def scalar_product(cls, v, u):
+        """Returns the Lorentz vector scalar_product."""
+        return super().scalar_product(v, cls._covariant(u))
