@@ -175,9 +175,9 @@ class TestVector3(unittest.TestCase):
 
     def setUp(self):
         super().setUp()
-        self.v = vectors.Vector3(1, 2, 3)
-        self.u = vectors.Vector3(7, 4, 2)
-        self.w = vectors.Vector3(2, 2*math.sqrt(3), 3)
+        self.v = vectors.Vector3(x=1, y=2, z=3)
+        self.u = vectors.Vector3(x=7, y=4, z=2)
+        self.w = vectors.Vector3(x=2, y=2*math.sqrt(3), z=3)
 
     def tearDown(self):
         super().tearDown()
@@ -205,11 +205,11 @@ class TestVector3(unittest.TestCase):
     # vector product
     def test_vector_product(self):
         self.assertEqual(vectors.Vector3.vector_product(self.v, self.u),
-                         vectors.Vector3(-8, 19, -10))
+                         vectors.Vector3(x=-8, y=19, z=-10))
 
     def test_cross(self):
         self.assertEqual(vectors.Vector3.cross(self.v, self.u),
-                         vectors.Vector3(-8, 19, -10))
+                         vectors.Vector3(x=-8, y=19, z=-10))
 
     def test_vector_product_anticommutes(self):
         self.assertEqual(vectors.Vector3.vector_product(self.v, self.u),
@@ -218,12 +218,12 @@ class TestVector3(unittest.TestCase):
     # addition
     def test_vector3_add_vector(self):
         self.assertEqual(self.u + vectors.Vector(3, 2, 1),
-                         vectors.Vector3(10, 6, 3))
+                         vectors.Vector3(x=10, y=6, z=3))
 
     # subtraction
     def test_vector3_sub_vector(self):
         self.assertEqual(self.u - vectors.Vector(3, 2, 1),
-                         vectors.Vector3(4, 2, 1))
+                         vectors.Vector3(x=4, y=2, z=1))
 
     # properties
     def test_spherical_polar_radius(self):
@@ -246,15 +246,15 @@ class TestLorentzVector(unittest.TestCase):
 
     def setUp(self):
         super().setUp()
-        self.v = vectors.LorentzVector(1, 2, 3, 4)
-        self.u = vectors.LorentzVector(4, 3, 2, 1)
+        self.v = vectors.LorentzVector(t=1, x=2, y=3, z=4)
+        self.u = vectors.LorentzVector(t=4, x=3, y=2, z=1)
 
     def tearDown(self):
         super().tearDown()
 
     def test_covariant(self):
         self.assertEqual(vectors.LorentzVector._covariant(self.v),
-                         vectors.LorentzVector(1, -2, -3, -4))
+                         vectors.LorentzVector(t=1, x=-2, y=-3, z=-4))
 
     def test_scalar_product(self):
         self.assertEqual(vectors.LorentzVector.scalar_product(
