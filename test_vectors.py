@@ -242,5 +242,13 @@ class TestVector3(unittest.TestCase):
         self.assertEqual(self.v.dimension(), 3)
 
 
+class TextLorentzVector(unittest.TestCase):
+
+    def setUp(self):
+        super().setUp()
+
+    def tearDown(self):
+        super().tearDown()
+
 if __name__ == '__main__':
     unittest.main()

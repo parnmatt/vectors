@@ -133,3 +133,8 @@ class Vector3(namedtuple('_Vector3', ('x', 'y', 'z')), Vector):
     def rho(self):
         """Return the cylindrical polar radius."""
         return self.r * math.sin(self.theta)
+
+class LorentzVector(namedtuple('_LorentzVector',
+                               ('t',) + Vector3._fields), Vector3):
+    """A 1+3 Lorentz Vector, of the form (t, x, y, z)."""
+    pass
