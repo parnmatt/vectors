@@ -15,6 +15,15 @@ class TestVector(unittest.TestCase):
     def tearDown(self):
         super().tearDown()
 
+    # methods
+    def test_same_length_true(self):
+        self.assertTrue(vectors.Vector._same_length(
+            self.v, self.u, [1,2,3,4,5], (9,8,7,6,5)))
+
+    def test_same_length_false(self):
+        self.assertFalse(vectors.Vector._same_length(
+            self.v, self.u, [1,2,3], (9,8,7,6,5)))
+
     # products
     def test_scalar_product_vector_length_error(self):
         with self.assertRaises(vectors.VectorLengthError):

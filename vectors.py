@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from collections import namedtuple
-import functools as ft
 import math
 import numbers
 import operator as op
@@ -25,7 +24,9 @@ class Vector(tuple):
     @staticmethod
     def _same_length(*iterables):
         """Return True if all iterables are the same length."""
-        return ft.reduce(op.eq, map(len, iterables))
+        lengths = map(len, iterables)
+        first_length = next(lengths)
+        return all(length == first_length for length in lengths)
 
     @classmethod
     def _map(cls, func, *iterables):
